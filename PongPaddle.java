@@ -7,13 +7,13 @@ public class PongPaddle {
         height = h;
     }
     public int getBottomY(){
-        return y-height;
+        return y+height-1;
     }
     public int getLeftX(){
         return x;
     }
     public int getRightX(){
-        return x+width;
+        return x+width-1;
     }
     public int getTopY(){
         return y;
