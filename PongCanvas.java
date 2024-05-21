@@ -10,6 +10,9 @@ public class PongCanvas
     private int width;
     private int height;
 
+    private int moveInt = 10;
+    private int[] moves = {0};
+
     private PongBall ball;
     private PongPaddle paddle1, paddle2;
     private PongScore player1, player2;
@@ -136,6 +139,25 @@ public class PongCanvas
 
 
     public void keyPressed(KeyEvent e) {
+        if (e.getKeyChar() == 'a' ||
+            e.getKeyChar() == 'A') {
+            if (paddle1.getTopY() > 7) {
+                moves = Arrays.copyOf(moves, moves.length+1);
+                moves[moves.length - 1] = 1;
+                //paddle1.moveUp(moveInt);
+                repaint();
+            }
+        }
+    }
+    public void moveChecker(int[] movess){
+        for(int i = 0;i<=moves.length;i++){
+            int temp = movess[i];
+            switch (temp){
+                case 1:
+                    paddle1.moveUp(moveInt);
+            }
+
+        }
     }
 
     public void keyReleased(KeyEvent e) {
@@ -145,31 +167,31 @@ public class PongCanvas
 
         // Add code here to limit movement of pong paddles.
 
-        if (e.getKeyChar() == 'a' ||
+        /**if (e.getKeyChar() == 'a' ||
             e.getKeyChar() == 'A') {
             if (paddle1.getTopY() > 7) {
-                paddle1.moveUp(2);
+                paddle1.moveUp(moveInt);
                 repaint();
             }
-        }
-        else if (e.getKeyChar() == 'z' ||
+        }*/
+        if (e.getKeyChar() == 'z' ||
                  e.getKeyChar() == 'Z') {
             if (paddle1.getBottomY() < height-30) {
-                paddle1.moveDown(2);
+                paddle1.moveDown(moveInt);
                 repaint();
             }
         }
         else if (e.getKeyChar() == 'k' ||
                  e.getKeyChar() == 'K') {
             if (paddle2.getTopY() > 7) {
-                paddle2.moveUp(2);
+                paddle2.moveUp(moveInt);
                 repaint();
             }
         }
         else if (e.getKeyChar() == 'm' ||
                  e.getKeyChar() == 'M') {
             if (paddle2.getBottomY() < height-30) {
-                paddle2.moveDown(2);
+                paddle2.moveDown(moveInt);
                 repaint();
             }
         }             
@@ -180,7 +202,8 @@ public class PongCanvas
                                                             paddle2,
                                                             player1,
                                                             player2),
-                                           0,40);
+                                           0,15);
+            //scheduleAtFixedRate(moveChecker(moves), 0, 15);
         }
 
     }
