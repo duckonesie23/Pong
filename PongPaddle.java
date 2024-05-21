@@ -3,25 +3,25 @@ public class PongPaddle {
     public PongPaddle(int top, int left, int w, int h){
         y = top;
         x = left;
-        w = width;
-        h = height;
+        width = w;
+        height = h;
     }
     public int getBottomY(){
-        return y+height;
+        return y-height;
     }
     public int getLeftX(){
         return x;
     }
     public int getRightX(){
-        return x-width;
+        return x+width;
     }
     public int getTopY(){
         return y;
     }
     public void moveDown(int d){
-        y-=d;
+        y+=d;
     }
     public void moveUp(int d){
-        y+=d;
+        y-=d;
     }
 }
