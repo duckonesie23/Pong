@@ -38,6 +38,9 @@ public class PongBallTimer
         // particuarly if the paddle is moved.
 
         // Walls...
+
+        canvas.moveChecker();
+
         if (ball.getX() <= 9 ||
             ball.getX() >= canvas.getBounds().getWidth() - 5 - 4) {
             ball.bounceX();

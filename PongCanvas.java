@@ -144,23 +144,38 @@ public class PongCanvas
             if (paddle1.getTopY() > 7) {
                 moves = Arrays.copyOf(moves, moves.length+1);
                 moves[moves.length - 1] = 1;
+                System.out.print(Arrays.toString(moves));
                 //paddle1.moveUp(moveInt);
                 repaint();
             }
         }
     }
-    public void moveChecker(int[] movess){
-        for(int i = 0;i<=moves.length;i++){
-            int temp = movess[i];
-            switch (temp){
-                case 1:
-                    paddle1.moveUp(moveInt);
-            }
+    public void moveChecker(){
+        if (paddle1.getTopY() > 7){
+            for(int i = 0;i<moves.length;i++){
+                int temp = moves[i];
+                System.out.print(temp);
+                switch (temp){
+                    case 1:
+                        paddle1.moveUp(moveInt);
+                }
 
+            }
         }
     }
 
     public void keyReleased(KeyEvent e) {
+        if (e.getKeyChar() == 'a' ||
+            e.getKeyChar() == 'A') {
+            for(int i=0,k=0;i<moves.length;i++){
+                int[] new_moves = new int[moves.length-1];
+                if(moves[i]!=1){
+                    new_moves[k]=moves[i];
+                    k++;
+                }
+            }
+            repaint();
+        }
     }
 
     public void keyTyped(KeyEvent e) {
